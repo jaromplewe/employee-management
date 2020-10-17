@@ -18,7 +18,6 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
   if (err) throw err;
-  console.log("connected as id " + connection.threadId + "\n");
   runQuestions();
 });
 
@@ -33,13 +32,47 @@ function runQuestions() {
         "Add employee",
         "Update employee",
         "Update employee role",
-        "Add department",
         "View departments",
+        "Add department",
         "Add role",
         "View roles"
       ]
     })
     .then(function(answer) {
-      console.log("answer: " + JSON.stringify(answer));
+      switch(answer.action) {
+        case "View all employees": readEmployees();
+          break;
+        
+        case "Add employee": addEmployee();
+          break;
+
+        case "Update employee": updateEmployee();
+          break;
+
+        case "Update employee role": updateEmployeeRole();
+          break;
+          
+        case "View departments": readDepartments();
+          break;
+
+        case "Add department": addDepartment();
+          break;
+
+        case "Add role": addRole();
+          break;
+
+        case "View roles": readRoles();
+        break;
+      }
     });
 }
+
+function readEmployees() {
+  connection.query("SELECT * FROM employee", function(err, res) {
+    if (err) throw err;
+    // Log all results of the SELECT statement
+    console.log("employee info: " + res);
+    connection.end();
+  });
+}
+
