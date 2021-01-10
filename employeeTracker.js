@@ -40,6 +40,13 @@ exports.runQuestions = () => {
       } 
       else if(answer.choice === "Add Employee") {
         add.addEmployee();
-      }      
+      }
+      else if(answer.choice === "EXIT") {
+        connection.end();
+        return
+      }
+      else if(answer.choice === "Update Employee Role") {
+        update.updateRole();
+      }
     });
 }
