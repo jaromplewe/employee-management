@@ -3,6 +3,7 @@ var password = require("./password")
 var inquirer = require("inquirer");
 var view = require("./lib/view");
 var add = require("./lib/add");
+var update = require("./lib/update");
 var table = require("console.table");
 
 var connection = mysql.createConnection({
