@@ -2,6 +2,7 @@ var mysql = require("mysql");
 var password = require("./password")
 var inquirer = require("inquirer");
 var view = require("./lib/view");
+var add = require("./lib/add");
 var table = require("console.table");
 
 var connection = mysql.createConnection({
@@ -37,5 +38,8 @@ exports.runQuestions = () => {
       if(answer.choice === "View All Employees") {
         view.viewAllEmployees();
       } 
+      else if(answer.choice === "Add Employee") {
+        add.addEmployee();
+      }      
     });
 }
